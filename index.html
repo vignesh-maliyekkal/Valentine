@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>For My Forever Love ❤</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Pacifico&family=Dancing+Script:wght@700&display=swap');
+
+    body {
+      font-family: 'Pacifico', cursive;
+      background: linear-gradient(135deg, #ff758c, #ff7eb3);
+      color: #fff;
+      text-align: center;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      overflow: hidden;
+      position: relative;
+    }
+
+    /* Floating Hearts */
+    .heart {
+      position: absolute;
+      font-size: 2rem;
+      animation: float 5s infinite ease-in-out;
+      opacity: 0.8;
+    }
+    @keyframes float {
+      0% { transform: translateY(0); }
+      50% { transform: translateY(-20px); }
+      100% { transform: translateY(0); }
+    }
+
+    .container {
+      background: rgba(255, 255, 255, 0.2);
+      padding: 20px;
+      border-radius: 15px;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+      max-width: 90%;
+      width: 350px;
+      position: absolute;
+      z-index: 2;
+      animation: fadeIn 1s ease-in-out;
+    }
+
+    h1 {
+      font-family: 'Dancing Script', cursive;
+      font-size: 2.2rem;
+    }
+
+    /* Typing Effect */
+    .text {
+      font-size: 1.2rem;
+      display: block;
+      min-height: 50px;
+      text-align: center;
+      white-space: pre-wrap;
+    }
+
+    .button {
+      background: #ff4a3d;
+      color: #fff;
+      border: none;
+      padding: 12px 25px;
+      font-size: 1.1rem;
+      border-radius: 20px;
+      cursor: pointer;
+      transition: transform 0.3s ease, background 0.3s ease;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+      margin-top: 20px;
+    }
+
+    .button:hover {
+      background: #e63e2e;
+      transform: scale(1.05);
+    }
+
+    .hidden {
+      display: none;
+    }
+
+    /* Fade In Animation */
+    @keyframes fadeIn {
+      from { opacity: 0; transform: scale(0.9); }
+      to { opacity: 1; transform: scale(1); }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Background Music -->
+  <audio id="bg-music" autoplay loop>
+    <source src="./WhatsApp Audio 2025-02-13 at 00.31.34_5446e143.mp3" type="audio/mpeg">
+    Your browser does not support the audio element.
+  </audio>
+
+  <!-- Floating Animated Hearts -->
+  <div class="heart" style="left: 10%; top: 20%;">❤</div>
+  <div class="heart" style="left: 30%; top: 50%; animation-duration: 6s;">💖</div>
+  <div class="heart" style="left: 50%; top: 30%; animation-duration: 7s;">💗</div>
+  <div class="heart" style="left: 70%; top: 60%; animation-duration: 5s;">💕</div>
+  <div class="heart" style="left: 90%; top: 40%; animation-duration: 6s;">💞</div>
+
+  <!-- Card 1 -->
+  <div class="container" id="card1">
+    <h1>Hi Ponne ❤</h1>
+    <p class="text" id="text1"></p>
+    <button class="button" onclick="showNextCard(1)">Click Here 💌</button>
+  </div>
+
+  <!-- Card 2 -->
+  <div class="container hidden" id="card2">
+    <h1>Today is Valentine's Day! 🌹</h1>
+    <p class="text" id="text2"></p>
+    <button class="button" onclick="showNextCard(2)">Next 💖</button>
+  </div>
+
+  <!-- Card 3 -->
+  <div class="container hidden" id="card3">
+    <h1>What You Mean to Me ❤</h1>
+    <p class="text" id="text3"></p>
+    <button class="button" onclick="showNextCard(3)">Tell Me More 😘</button>
+  </div>
+
+  <!-- Card 4 -->
+  <div class="container hidden" id="card4">
+    <h1>Every Moment with You ✨</h1>
+    <p class="text" id="text4"></p>
+    <button class="button" onclick="showNextCard(4)">Next 🥰</button>
+  </div>
+
+  <!-- Card 5: Slideshow -->
+  <div class="container hidden" id="card5">
+    <h1>Our Beautiful Memories 📸</h1>
+    <p class="text" id="text5"></p>
+    <button class="button" onclick="showNextCard(5)">Next 🎁</button>
+  </div>
+
+  <!-- Card 6: Video -->
+  <div class="container hidden" id="card6">
+    <h1>A Special Video for You 🎥</h1>
+    <video width="100%" controls>
+      <source src="your-video-url.mp4" type="video/mp4">
+      Your browser does not support the video tag.
+    </video>
+    <button class="button" onclick="showNextCard(6)">Final Surprise 💝</button>
+  </div>
+
+  <!-- Card 7: Final Message -->
+  <div class="container hidden" id="card7">
+    <h1>Happy Valentine's Day, My Love! 💕</h1>
+    <p class="text" id="text7"></p>
+    <p>Forever Yours,<br>Ponnumkatta</p>
+  </div>
+
+  <script>
+    let currentCard = 1;
+    let messages = {
+      text1: "You know what's special about today?",
+      text2: "A day to celebrate love, our love. And you, my love, make every day special.",
+      text3: "You are my sunshine on a rainy day, my peace in the chaos, and the love of my life.",
+      text4: "Every moment I spend with you is a treasure. My heart belongs to you, now and forever.",
+      text5: "Let's relive our memories together.",
+      text7: "You are my heart, my soul, my everything. I love you endlessly! ❤"
+    };
+
+    function typeText(id, text, index = 0) {
+      if (index < text.length) {
+        document.getElementById(id).innerText += text.charAt(index);
+        setTimeout(() => typeText(id, text, index + 1), 50);
+      }
+    }
+
+    function showNextCard(cardNumber) {
+      document.getElementById(card${currentCard}).style.display = 'none';
+      currentCard = cardNumber + 1;
+      document.getElementById(card${currentCard}).style.display = 'block';
+      let textId = text${currentCard};
+      if (messages[textId]) {
+        document.getElementById(textId).innerText = "";
+        typeText(textId, messages[textId]);
+      }
+    }
+
+    // Start first text animation
+    typeText("text1", messages.text1);
+  </script>
+
+</body>
+</html>
